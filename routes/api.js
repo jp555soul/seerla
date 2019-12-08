@@ -9,9 +9,8 @@ var crypto = require('crypto');
 router.get('/users', (req, res) => {
 	User.findAll()
 		.then(users =>{
-			console.log(users);
 			res.setHeader('Content-Type', 'application/json');
-			res.json();
+			res.json(users);
 			res.status(200).send();
 		})
 		.catch(err => console.log(err));

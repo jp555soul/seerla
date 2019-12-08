@@ -26,9 +26,10 @@ class Users extends Component {
         <h2>Users</h2>
         <ul>
         {this.props.users.map(users =>
-          //<li key={users.id}>{users.firstName} {users.lastName}</li>
           <li key={users.id}>
-            <h3>{users.title}</h3>
+            <h2>{users.firstName} {users.lastName}</h2>
+            <h3>{users.userName}</h3>
+            <span>{users.userEmail}</span>
           </li>
         )}
         </ul>
