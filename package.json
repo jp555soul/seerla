@@ -1,0 +1,29 @@
+{
+  "name": "Seer.LA",
+  "version": "1.0.0",
+  "description": "User Sign-Up",
+  "main": "server.js",
+  "scripts": {
+    "client-install": "cd client && npm install",
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Brad Traversy & Gregory Assasie",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^4.1.1",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "handlebars": "^4.5.3",
+    "nodemon": "^1.19.1",
+    "pg": "^7.14.0",
+    "pg-hstore": "^2.3.3",
+    "react": "^16.12.0",
+    "redux": "^4.0.4",
+    "sequelize": "^5.21.2"
+  }
+}
