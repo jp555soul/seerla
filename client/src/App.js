@@ -1,25 +1,32 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import logo from './logo.svg'
-import './App.css'
 import store from './store'
-import Users from './components/User/users'
-import Userform from './components/Userform/userform'
+
+import Nav from './components/layout/Nav'
+import Admin from './components/pages/Admin'
+import Confirmation from './components/pages/Confirmation'
+import Signup from './components/pages/Signup'
+
+import './App.css'
 
 class App extends Component {
 
   render () {
     return (
-      <Provider store={ store }>
-        <div className="App">
-          <header className="App-header">
-            <img src={ logo } className="App-logo" alt="logo"/>
-            <h1 className="App-title">Seer.LA User Sign-up</h1>
-          </header>
-          <Userform/>
-          <Users/>
-        </div>
-      </Provider>
+      <Router>
+        <Provider store={ store }>
+          <div className="App container">
+            <Nav/>
+            <main className="container">
+              <Route path="/" exact={true} component={Signup} />
+              <Route path="/admin" exact={true} component={Admin} />
+              <Route path="/signup" exact={true} component={Signup} />
+            </main>
+          </div>
+        </Provider>
+      </Router>
+
     )
   }
 }

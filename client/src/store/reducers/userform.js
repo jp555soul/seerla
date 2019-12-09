@@ -1,8 +1,9 @@
-import {GET_USERS} from '../actions/constants'
+import {ADD_USER} from '../actions/constants'
 
 const userFormReducer = (state = [], {type, payload}) => {
+	console.log("type:" , type);
     switch (type) {
-      case GET_USERS:
+      case ADD_USER:
         return payload
       default:
         return state
