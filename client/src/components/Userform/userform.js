@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {connect } from 'react-redux'
-import {addUser} from '../../store/actions/userform'
+import {userForm} from '../../store/actions/userform'
 import './userform.css';
 
 class Userform extends Component {
 
   static propTypes = {
-    addUser: PropTypes.func.isRequired
+    userForm: PropTypes.func.isRequired
   }
 
   static defaultProps = {
@@ -19,7 +19,7 @@ class Userform extends Component {
   }
 
   componentDidMount() {
-    this.props.addUser();
+    this.props.userForm();
   }
 
   constructor(props) {
@@ -29,7 +29,7 @@ class Userform extends Component {
       lastName: '',
       password: '',
       userName: '',
-      userEmail:''
+      userEmail: ''
     };
 
     this.onChange = this.onChange.bind(this);
@@ -47,7 +47,8 @@ class Userform extends Component {
       userEmail: this.state.userEmail
     };
 
-    this.props.addUser(user);
+    this.props.userForm(user);
+
   }
 
   onChange(e){
@@ -83,7 +84,7 @@ class Userform extends Component {
               placeholder="eg. Silver" 
               maxLength="100" 
               required 
-              value={this.state.firstName}
+              value={this.state.lastName}
               onChange={this.onChange}/>
           </div>
           <div className="form-group">
@@ -131,11 +132,11 @@ class Userform extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  userform: state.userform
+  userForm: state.userForm
 })
 
 const dispatchToProps = (dispatch) => ({
-   addUser: () => dispatch(addUser())
+   userForm: () => dispatch(userForm())
 })
 
 export default connect(mapStateToProps, dispatchToProps)(Userform);

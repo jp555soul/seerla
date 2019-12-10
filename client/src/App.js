@@ -22,6 +22,7 @@ class App extends Component {
               <Route path="/" exact={true} component={Signup} />
               <Route path="/admin" exact={true} component={Admin} />
               <Route path="/signup" exact={true} component={Signup} />
+              <Route path="/confirm" exact={true} component={Confirmation} />
             </main>
           </div>
         </Provider>

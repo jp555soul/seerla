@@ -1,9 +1,8 @@
-import {ADD_USER} from './constants';
+import {USER_FORM} from './constants';
 
-export const addUser = postData => dispatch => {
-	//https://jsonplaceholder.typicode.com/posts
-	// /api/add/user
-	fetch('/api/add/user', {
+//https://jsonplaceholder.typicode.com/posts
+export const userForm = postData => dispatch => {
+	return fetch('/api/add/user', {
   		method: 'POST',
   		headers: {
   			'content-type': 'application/json'
@@ -11,10 +10,12 @@ export const addUser = postData => dispatch => {
   		body: JSON.stringify(postData)
   	})
 		.then(res => res.json())
-		.then(user => 
-			dispatch({
-				type:ADD_USER,
-				payload: user
+		.then(userForm => dispatch({
+				type: USER_FORM,
+				payload: userForm
 			})
-		);
-};
+		)
+		.then(userForm => {
+			console.log('userForm: ',userForm)
+		})
+}

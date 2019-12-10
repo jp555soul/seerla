@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const helmet = require('helmet')
 const cors = require('cors');
 const express = require('express');
 const react = require('react');
@@ -8,6 +9,7 @@ const db = require('./config/db');
 
 const app = express();
 
+app.use(helmet())
 app.use(cors());
 
 //Test connection

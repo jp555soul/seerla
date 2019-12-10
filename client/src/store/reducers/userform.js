@@ -1,9 +1,8 @@
-import {ADD_USER} from '../actions/constants'
+import {USER_FORM} from '../actions/constants'
 
 const userFormReducer = (state = [], {type, payload}) => {
-	console.log("type:" , type);
     switch (type) {
-      case ADD_USER:
+      case USER_FORM:
         return payload
       default:
         return state
