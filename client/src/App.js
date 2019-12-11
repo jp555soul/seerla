@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Provider, connect } from 'react-redux'
+import { Router, Route, Redirect, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { alertActions } from './_help/alerts'
 import { history } from './_help/history'
-import store from './store'
 
 import Nav from './components/layout/Nav'
 import Home from './components/pages/Home'
@@ -26,20 +25,21 @@ class App extends Component {
     const { alert } = this.props;
     return (
       <Router history={history}>
-        <Provider store={ store }>
-          <div className="App container">
-            <Nav/>
-            <main className="container">
-               {alert.message &&
-                 <div className={`alert ${alert.type}`}>{alert.message}</div>
-               }
+        <div className="App container">
+          <Nav/>
+          <main className="container">
+             {alert.message &&
+               <div className={`alert ${alert.type}`}>{alert.message}</div>
+             }
+            <Switch>
               <Route path="/" exact={true} component={Home} />
               <Route path="/admin" exact={true} component={Admin} />
               <Route path="/signup" exact={true} component={Signup} />
               <Route path="/confirm" exact={true} component={Confirmation} />
-            </main>
-          </div>
-        </Provider>
+              <Redirect from="*" to="/" />
+            </Switch>
+          </main>
+        </div>
       </Router>
 
     )

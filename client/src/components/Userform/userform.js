@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { userActions } from '../../store/actions/userform'
+import { userFormActions } from '../../store/actions/userform'
 import './userform.css'
 
 class Userform extends Component {
@@ -31,8 +31,6 @@ class Userform extends Component {
                 [name]: value
             }
         });
-
-        console.log('user - state: ', user)
     }
 
     onSubmit(e) {
@@ -43,8 +41,6 @@ class Userform extends Component {
         if (user.firstName && user.lastName && user.userName && user.password && user.userEmail) {
             this.props.form(user);
         }
-
-        console.log('user: ', user);
     }
 
     render() {
@@ -149,8 +145,8 @@ function mapState(state) {
     return { userform };
 }
 
-const actionCreators = {
-    form: userActions.form
+const dispatchToProps = {
+    form: userFormActions.form
 }
 
-export default connect(mapState, actionCreators)(Userform);
+export default connect(mapState, dispatchToProps)(Userform);

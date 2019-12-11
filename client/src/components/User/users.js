@@ -1,29 +1,12 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getUsers, deleteUser } from '../../store/actions/user'
+
+import { userActions } from '../../store/actions/user'
 import './users.css';
 
 class Users extends Component {
-
-  static propTypes = {
-    getUsers: PropTypes.func.isRequired,
-    users: PropTypes.array.isRequired,
-    addUser: PropTypes.object
-  }
-
-  static defaultProps = {
-    users: []
-  }
-
   componentDidMount() {
     this.props.getUsers();
-  }
-
-  componentWillReceiveProps(nextProps){
-    if (nextProps.addUser) {
-      this.props.users.unshift(nextProps.addUser);
-    }
   }
 
   onDelete = id => {
@@ -31,7 +14,9 @@ class Users extends Component {
   };
 
   render() {
-    const userList = this.props.users.map(user => (
+
+    console.log(this.props)
+    const userslist = this.props.users.map((user, index) => (
       <div key={`${user.id}`} className="col-md-4 mb-5">
         <div className="card h-100">
           <div className="card-body">
@@ -51,21 +36,22 @@ class Users extends Component {
       <div>
         <h2>Users</h2>
         <div className="row">
-          {userList}
+          {userslist}
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  users: state.users,
-  addUser: state.users.user
-})
+function mapStateToProps(state){
+  console.log('state:', state)
+  const { userslist } = state.users;
+  return { userslist };
+}
 
-const dispatchToProps = (dispatch) => ({
-   getUsers: () => dispatch(getUsers()),
-   deleteUser: (id) => dispatch(deleteUser(id))
-})
+const dispatchToProps = {
+   getUsers: userActions.getUsers,
+   deleteUser: userActions.deleteUser
+}
 
 export default connect(mapStateToProps, dispatchToProps)(Users);
