@@ -31,6 +31,8 @@ class Userform extends Component {
                 [name]: value
             }
         });
+
+        console.log('user - state: ', user)
     }
 
     onSubmit(e) {
@@ -50,7 +52,7 @@ class Userform extends Component {
         const { user, submitted } = this.state;
         return (
 	      <div className="bd-example">
-	        <h2>Userform</h2>
+	        <h2>Sign-up</h2>
 	        <form onSubmit={this.onSubmit}>
 	          <div className="form-group">
 	            <label htmlFor="firstName">First Name </label>

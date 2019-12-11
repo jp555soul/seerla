@@ -1,10 +1,10 @@
 import { CONSTANTS } from '../../_constants/constants'
 
-const userFormReducer = (state = [], {type, payload}) => {
-    switch (type) {
+const userFormReducer = (state = [], payload) => {
+    switch (payload.type) {
     	case CONSTANTS.REG_REQUEST:
     		console.log('payload - form req:   ', payload)
-    		return { users: true };
+    		return { userform: true };
     	case CONSTANTS.REG_SUCCESS:
     		console.log('payload - form yay: ', payload)
         	return payload
