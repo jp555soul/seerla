@@ -1,3 +1,7 @@
+body, li{
+  font-size: 14px;
+}
+
 .App {
   text-align: center;
 }
@@ -27,6 +31,13 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
+.list-group-item {
+    display: list-item;
+}
+
+.list-group {
+    list-style: decimal inside;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

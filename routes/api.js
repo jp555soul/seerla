@@ -46,7 +46,7 @@ router.post('/add/user', (req, res) => {
 		}
 
 		if(errors.length > 0){
-			res.render('/confirmation',{
+			res.render('/signup',{
 				errors,
 				firstName,
 				lastName,

@@ -1,10 +1,13 @@
-import { GET_USERS, DELETE_USER } from './constants';
+import { CONSTANTS } from '../../_constants/constants'
+import { alertActions } from './alerts'
 
 export const getUsers = () => dispatch => {
-	return fetch('/api/users')
+	return fetch('/api/users',{
+        method: 'GET'
+    })
     	.then(res => res.json())
     	.then(users => dispatch({
-    		type: GET_USERS, 
+    		type: CONSTANTS.GET_USERS, 
     		payload: users
     	})
 		
@@ -19,13 +22,16 @@ export const deleteUser = id => dispatch => {
 		method: 'DELETE',
         body: JSON.stringify(id)
 	})
-    .then(res =>
-      dispatch({
-        type: DELETE_USER,
-        payload: id
-      })
+    .then(
+        res => {
+            dispatch({
+                type: CONSTANTS.DELETE_USER,
+                payload: id
+            });
+            dispatch(alertActions.success('User deleted'));
+        }
     )
     .catch(err => {
-      console.log(err)
+      dispatch(alertActions.error(err));
     });
 }

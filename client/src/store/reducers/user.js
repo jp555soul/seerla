@@ -1,4 +1,4 @@
-import { GET_USERS, DELETE_USER } from '../actions/constants'
+import { CONSTANTS } from '../../_constants/constants'
 
 const initialState = {
   payload: []
@@ -7,12 +7,11 @@ const initialState = {
 
 const userReducer = (state = [initialState], {type, payload}) => {
     switch (type) {
-    	case GET_USERS:
+    	case CONSTANTS.GET_USERS:
     		return payload
-    	case DELETE_USER:
+    	case CONSTANTS.DELETE_USER:
         return {
-          ...state,
-          payload: state.users.filter(user => user.id !== payload)
+          users: state.users.filter(user => user.id !== payload)
         };
       default:
       	return state

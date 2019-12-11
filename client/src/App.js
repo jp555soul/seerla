@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 
 import Nav from './components/layout/Nav'
+import Home from './components/pages/Home'
 import Admin from './components/pages/Admin'
 import Confirmation from './components/pages/Confirmation'
 import Signup from './components/pages/Signup'
@@ -19,7 +20,7 @@ class App extends Component {
           <div className="App container">
             <Nav/>
             <main className="container">
-              <Route path="/" exact={true} component={Signup} />
+              <Route path="/" exact={true} component={Home} />
               <Route path="/admin" exact={true} component={Admin} />
               <Route path="/signup" exact={true} component={Signup} />
               <Route path="/confirm" exact={true} component={Confirmation} />

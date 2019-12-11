@@ -1,11 +1,13 @@
-import { USER_FORM } from '../actions/constants'
+import { CONSTANTS } from '../../_constants/constants'
 
 const userFormReducer = (state = [], {type, payload}) => {
     switch (type) {
-    	case USER_FORM.REGISTER_REQUEST:
-    		return { registering: true };
-    	case USER_FORM.SUCCESS:
+    	case CONSTANTS.REG_REQUEST:
+    		return { userform: true };
+    	case CONSTANTS.REG_SUCCESS:
         	return payload
+       	case CONSTANTS.REG_FAIL:
+       		return {};
       	default:
         	return state
     }

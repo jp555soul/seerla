@@ -1,19 +1,37 @@
-import {USER_FORM} from './constants'
+import { CONSTANTS } from '../../_constants/constants'
+import { alertActions } from './alerts';
+import { history } from '../../_help/history'
 
-export const register = user => dispatch => {
-    return fetch('/api/add/user', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(user)
-    })
-    .then(res => res.json())
-    .then(userForm => dispatch({
-            type: USER_FORM,
-            payload: userForm
+function register(user) {
+    return dispatch => {
+        dispatch(request(user));
+        fetch('/api/add/user', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(user)
         })
-    ).catch(err => {
-        console.log(err)
-    })
+        .then(res => res.json())
+        .then(
+            userForm => {
+                dispatch(success());
+                dispatch({
+                    type: CONSTANTS.USER_FORM,
+                    payload: userForm
+                });
+                history.push('/confirm');
+                dispatch(alertActions.success('Signed up'));
+            },
+            err => {
+                console.log('err: ', err);
+                dispatch(failure(err));
+                dispatch(alertActions.error(err));
+            }
+        )
+    };
+
+    function request(user) { return { type: CONSTANTS.REG_REQUEST, user } }
+    function success(user) { return { type: CONSTANTS.REG_SUCCESS, user } }
+    function failure(error) { return { type: CONSTANTS.REG_FAIL, error } }
 }
 
 export const userActions = {

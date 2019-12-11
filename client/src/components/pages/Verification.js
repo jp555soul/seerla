@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
 export default () => {
 	return(
 		<div>
-			<h1>Confirmed</h1>
+			<h1>Verify</h1>
 		</div>
 	);
 };

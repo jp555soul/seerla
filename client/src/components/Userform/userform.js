@@ -60,7 +60,7 @@ class Userform extends Component {
 	        <h2>Userform</h2>
 	        <form onSubmit={this.onSubmit}>
 	          <div className="form-group">
-	            <label htmlFor="firstName">First Name</label>
+	            <label htmlFor="firstName">First Name </label>
 	            <input 
 	              type="text" 
 	              name="firstName" 
@@ -76,7 +76,7 @@ class Userform extends Component {
                     }
 	          </div>
 	          <div className="form-group">
-	            <label htmlFor="lastName">Last Name</label>
+	            <label htmlFor="lastName">Last Name </label>
 	            <input 
 	              type="text" 
 	              name="lastName" 
@@ -92,7 +92,7 @@ class Userform extends Component {
                     }
 	          </div>
 	          <div className="form-group">
-	            <label htmlFor="password">Password</label>
+	            <label htmlFor="password">Password </label>
 	            <input 
 	              type="password" 
 	              name="password" 
@@ -107,7 +107,7 @@ class Userform extends Component {
                     }
 	          </div>
 	          <div className="form-group">
-	            <label htmlFor="userName">Username</label>
+	            <label htmlFor="userName">Username </label>
 	            <input 
 	              type="text" 
 	              name="userName" 
@@ -123,7 +123,7 @@ class Userform extends Component {
                     }
 	          </div>
 	          <div className="form-group">
-	            <label htmlFor="budget">Contact Email</label>
+	            <label htmlFor="budget">Contact Email </label>
 	            <input 
 	              type="email" 
 	              name="userEmail" 
