@@ -1,5 +1,6 @@
 export const GET_USERS = "GET_USERS"
-export const REMOVE_USER = "REMOVE_USER"
+export const DELETE_USER = "DELETE_USER"
+// add user
 export const USER_FORM = "USER_FORM"
 
 export const SUCCESS = "ALERT_SUCCESS"

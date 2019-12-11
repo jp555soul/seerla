@@ -25,6 +25,7 @@ app.set('view engine', 'ejs');
 
 // Body Parser
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '50mb'}));
 
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));

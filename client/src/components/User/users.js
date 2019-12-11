@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect } from 'react-redux'
-import {getUsers} from '../../store/actions/user'
+import { connect } from 'react-redux'
+import { getUsers, deleteUser } from '../../store/actions/user'
 import './users.css';
 
 class Users extends Component {
@@ -26,6 +26,11 @@ class Users extends Component {
     }
   }
 
+  onDelete = id => {
+    console.log('comp: ', id)
+    this.props.deleteUser(id);
+  };
+
   render() {
     const userList = this.props.users.map(user =>(
       <div key={user.id} className="col-md-4 mb-5">
@@ -36,7 +41,7 @@ class Users extends Component {
             <span>{user.userEmail}</span>
           </div>
           <div className="card-footer">
-            <button className="btn">Delete</button>
+            <button className="btn btn-danger" onClick={this.onDelete.bind(this, user.id)}>Delete</button>
           </div>
         </div>
       </div>
@@ -59,7 +64,8 @@ const mapStateToProps = (state) => ({
 })
 
 const dispatchToProps = (dispatch) => ({
-   getUsers: () => dispatch(getUsers())
+   getUsers: () => dispatch(getUsers()),
+   deleteUser: () => dispatch(deleteUser())
 })
 
 export default connect(mapStateToProps, dispatchToProps)(Users);
