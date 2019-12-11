@@ -4,15 +4,6 @@ import { userActions } from '../../store/actions/userform'
 import './userform.css'
 
 class Userform extends Component {
-  	
-  	static defaultProps = {
-	    firstName: '',
-	    lastName: '',
-	    userName:'',
-	    password:'',
-	    userEmail:''
-  	}
-
     constructor(props) {
         super(props);
 
@@ -48,8 +39,10 @@ class Userform extends Component {
         this.setState({ submitted: true });
         const { user } = this.state;
         if (user.firstName && user.lastName && user.userName && user.password && user.userEmail) {
-            this.props.register(user);
+            this.props.form(user);
         }
+
+        console.log('user: ', user);
     }
 
     render() {
@@ -155,7 +148,7 @@ function mapState(state) {
 }
 
 const actionCreators = {
-    register: userActions.register
+    form: userActions.form
 }
 
 export default connect(mapState, actionCreators)(Userform);

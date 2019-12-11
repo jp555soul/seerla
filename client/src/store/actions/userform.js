@@ -2,8 +2,9 @@ import { CONSTANTS } from '../../_constants/constants'
 import { alertActions } from './alerts';
 import { history } from '../../_help/history'
 
-function register(user) {
+function form(user) {
     return dispatch => {
+        console.log('action - reg:', user)
         dispatch(request(user));
         fetch('/api/add/user', {
             method: 'POST',
@@ -12,11 +13,11 @@ function register(user) {
         })
         .then(res => res.json())
         .then(
-            userForm => {
+            user => {
                 dispatch(success());
                 dispatch({
                     type: CONSTANTS.USER_FORM,
-                    payload: userForm
+                    payload: user
                 });
                 history.push('/confirm');
                 dispatch(alertActions.success('Signed up'));
@@ -35,5 +36,5 @@ function register(user) {
 }
 
 export const userActions = {
-    register
+    form
 }
