@@ -17,8 +17,12 @@ router.get('/users', (req, res) => {
 });
 
 // Add a user
-router.post('/add/user', (req, res, next) => {
+router.post('/add/user', (req, res) => {
 	console.log("body: ", req.body);
+	res.sendStatus(400).send();
+
+
+
 	// try {
 	// 	const { 
 	// 		firstName,
@@ -27,7 +31,6 @@ router.post('/add/user', (req, res, next) => {
 	// 		password,
 	// 		userName
 	// 	} = req.body;
-	// 	res.setHeader('Content-Type', 'application/json')
 
 	// 	User.findOrCreate({ 
 	// 		where:{
