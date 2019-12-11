@@ -15,10 +15,8 @@ export const getUsers = () => dispatch => {
 }
 
 export const deleteUser = id => dispatch => {
-    console.log('action: ', id)
 	return fetch(`/api/delete/${id}`,{
 		method: 'DELETE',
-        headers: {'content-type': 'application/json'},
         body: JSON.stringify(id)
 	})
     .then(res =>

@@ -27,13 +27,12 @@ class Users extends Component {
   }
 
   onDelete = id => {
-    console.log('comp: ', id)
     this.props.deleteUser(id);
   };
 
   render() {
-    const userList = this.props.users.map(user =>(
-      <div key={user.id} className="col-md-4 mb-5">
+    const userList = this.props.users.map(user => (
+      <div key={`${user.id}`} className="col-md-4 mb-5">
         <div className="card h-100">
           <div className="card-body">
             <h2 className="card-title">{user.userName}</h2>
@@ -45,7 +44,8 @@ class Users extends Component {
           </div>
         </div>
       </div>
-      ));
+      )
+    );
 
     return (
       <div>
@@ -65,7 +65,7 @@ const mapStateToProps = (state) => ({
 
 const dispatchToProps = (dispatch) => ({
    getUsers: () => dispatch(getUsers()),
-   deleteUser: () => dispatch(deleteUser())
+   deleteUser: (id) => dispatch(deleteUser(id))
 })
 
 export default connect(mapStateToProps, dispatchToProps)(Users);

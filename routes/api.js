@@ -46,7 +46,7 @@ router.post('/add/user', (req, res) => {
 		}
 
 		if(errors.length > 0){
-			res.render('/',{
+			res.render('/confirmation',{
 				errors,
 				firstName,
 				lastName,
@@ -76,9 +76,13 @@ router.post('/add/user', (req, res) => {
 });
 
 // Delete a user
-router.get('/delete/:id', (req, res) => {
-	console.log('params:' , req.params);
-  	User.destroy(req.params.id)
+router.delete('/delete/:id', (req, res) => {
+	console.log('body: ', req.params.id);
+  	User.destroy({
+  		where:req.params,
+  		truncate: false,
+  		limit: 1
+  	})
     .then(user => user.remove().then(() => res.json({ success: true })))
     .catch(err => res.status(404).json({ success: false }));
 });

@@ -3,7 +3,7 @@ import {USER_FORM} from './constants'
 export const register = user => dispatch => {
     return fetch('/api/add/user', {
         method: 'POST',
-        headers: {'content-type': 'application/json'},
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(user)
     })
     .then(res => res.json())
