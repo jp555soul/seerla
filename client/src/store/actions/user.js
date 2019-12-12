@@ -1,63 +1,39 @@
 import { CONSTANTS } from '../../_constants/constants'
 import { alertActions } from './alerts'
 
-function getUsers(){
-    return  dispatch => {
-        dispatch(request());
-    	fetch('/api/users',{
-            method: 'GET'
-        })
-    	.then(
-            res => {
-                res.json()
-            })
-    	.then(
-            users => {
-                dispatch(success(users))
-            },
-            err => {
-                console.log('err: ', err);
-                dispatch(failure(err));
-                dispatch(alertActions.error(err));
-            }
-    	)
-    };
-
-    function request() { 
-        console.log('request');
-        return { type: CONSTANTS.GET_REQUEST } 
-    }
-    function success(users) { 
-        return { type: CONSTANTS.GET_SUCCESS, users } 
-    }
-    function failure(error) { 
-        return { type: CONSTANTS.GET_FAIL, error } 
-    }
-}
-
-function deleteUser(id) {
-    return dispatch => {
-    	fetch(`/api/delete/${id}`,{
-    		method: 'DELETE',
-            body: JSON.stringify(id)
-    	})
+export const getUsers = () => dispatch => {
+    return  fetch('/api/users')
         .then(
             res => {
-                dispatch({
-                    type: CONSTANTS.DELETE_USER,
-                    payload: id
-                });
-                dispatch(alertActions.success('User deleted'));
-            }
-        )
+                return res.clone().json()
+            })
+        .then(users => {
+            dispatch({
+                type: CONSTANTS.GET_SUCCESS, 
+                users
+            })
+        })
         .catch(err => {
-          dispatch(alertActions.error(err));
-        });
-    }
+            console.log(err)
+        })
 }
 
-export const userActions = {
-    getUsers,
-    deleteUser
+export const deleteUser = id => dispatch => {
+    return fetch(`/api/delete/${id}`,{
+    		method: 'DELETE',
+            body: id
+    	})
+        .then(
+            user => {
+                dispatch({
+                    type: CONSTANTS.DELETE_USER,
+                    id
+                });
+                dispatch(alertActions.success('User deleted'));
+            },
+            err => {
+                dispatch(alertActions.error(err));
+            }
+        );
 }
 

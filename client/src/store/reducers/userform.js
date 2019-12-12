@@ -5,11 +5,13 @@ export function userform(state = {}, payload) {
     	case CONSTANTS.REG_REQUEST:
     		return { userform: true };
     	case CONSTANTS.REG_SUCCESS:
-        	return {};
+        return payload;
       case CONSTANTS.REG_FAIL:
-       		return {};
-      	default:
-        	return state
+       	return {};
+      case CONSTANTS.FORM_DATA:
+        console.log('formdata: ',payload)
+        return payload
+      default:
+        return state
     }
 }
-

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { userFormActions } from '../../store/actions/userform'
+import { form, formData } from '../../store/actions/userform'
 import './userform.css'
 
 class Userform extends Component {
@@ -40,6 +40,7 @@ class Userform extends Component {
         const { user } = this.state;
         if (user.firstName && user.lastName && user.userName && user.password && user.userEmail) {
             this.props.form(user);
+            this.props.formData(user);
         }
     }
 
@@ -146,7 +147,8 @@ function mapState(state) {
 }
 
 const dispatchToProps = {
-    form: userFormActions.form
+    form,
+    formData
 }
 
 export default connect(mapState, dispatchToProps)(Userform);

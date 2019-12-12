@@ -15,6 +15,7 @@ export const CONSTANTS = {
 
 // add user
 	USER_FORM : "USER_FORM",
+	FORM_DATA :  "FORM_DATA"
 
 };
 

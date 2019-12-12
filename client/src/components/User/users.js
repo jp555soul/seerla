@@ -1,22 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { userActions } from '../../store/actions/user'
+import { getUsers, deleteUser } from '../../store/actions/user'
 import './users.css';
 
 class Users extends Component {
+
+  static defaultProps = {
+    users: []
+  }
   componentDidMount() {
     this.props.getUsers();
   }
 
   onDelete = id => {
-    this.props.deleteUser(id);
+    return (e) => this.props.deleteUser(id);
   };
 
   render() {
 
-    console.log(this.props)
-    const userslist = this.props.users.map((user, index) => (
+    const users = this.props.users.map(user => (
       <div key={`${user.id}`} className="col-md-4 mb-5">
         <div className="card h-100">
           <div className="card-body">
@@ -25,7 +28,7 @@ class Users extends Component {
             <span>{user.userEmail}</span>
           </div>
           <div className="card-footer">
-            <button className="btn btn-danger" onClick={this.onDelete.bind(this, user.id)}>Delete</button>
+            <button className="btn btn-danger" onClick={this.onDelete(user.id)}>Delete</button>
           </div>
         </div>
       </div>
@@ -36,22 +39,21 @@ class Users extends Component {
       <div>
         <h2>Users</h2>
         <div className="row">
-          {userslist}
+          {users}
         </div>
       </div>
     );
   }
 }
 
-function mapStateToProps(state){
-  console.log('state:', state)
-  const { userslist } = state.users;
-  return { userslist };
-}
+const mapStateToProps = (state) => ({
+  users: state.users.users,
+  removedUser: state.users.user
+})
 
-const dispatchToProps = {
-   getUsers: userActions.getUsers,
-   deleteUser: userActions.deleteUser
-}
+const dispatchToProps = (dispatch) => ({
+   getUsers: () => dispatch(getUsers()),
+   deleteUser: (id) => dispatch(deleteUser(id))
+})
 
 export default connect(mapStateToProps, dispatchToProps)(Users);
